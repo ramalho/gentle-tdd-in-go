@@ -5,7 +5,7 @@ import (
 )
 
 func TestAmmount(t *testing.T) {
-	five := Dollar{5}
+	five := Money{5}
 	x := 2
 	five.Times(x)
 	want := 10

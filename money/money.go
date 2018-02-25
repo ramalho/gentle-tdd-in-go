@@ -1,9 +1,9 @@
 package main
 
-type Dollar struct {
+type Money struct {
 	Ammount int
 }
 
-func (v *Dollar) Times(x int)  {
+func (v *Money) Times(x int)  {
 	v.Ammount *= x
 }
