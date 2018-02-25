@@ -5,11 +5,11 @@ import (
 )
 
 func TestAmmount(t *testing.T) {
-	five := Money{5}
+	five := Money{5, "USD"}
 	x := 2
-	five.Times(x)
+	got := five.Times(x)
 	want := 10
-	if five.Ammount != want {
-		t.Errorf("five.times(%d), got: %d, want: %d.", x, five.Ammount, want)
+	if got.Ammount != want {
+		t.Errorf("five.times(%d), got: %d, want: %d.", x, got, want)
 	}
 }
