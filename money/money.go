@@ -1,10 +1,14 @@
 package main
 
 type Money struct {
-	Ammount int
+	Amount   int
 	Currency string
 }
 
-func (v Money) Times(x int) Money {
-	return Money{v.Ammount * x, v.Currency}
+func (m Money) Times(i int) Money {
+	return Money{m.Amount * i, m.Currency}
+}
+
+func (m Money) Equal(other Money) bool {
+	return m.Amount == other.Amount && m.Currency == other.Currency
 }
