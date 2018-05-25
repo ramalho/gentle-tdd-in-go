@@ -10,8 +10,8 @@ func TestTimes(t *testing.T) {
 	five := Money{5, "USD"}
 	x := 2
 	got := five.Times(x)
-	want := 10
-	if got.Amount != want {
+	want := Money{10, "USD"}
+	if got != want {
 		t.Errorf("five.times(%d), got: %v, want: %v.", x, got, want)
 	}
 }

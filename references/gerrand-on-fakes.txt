@@ -1,0 +1,11 @@
+
+
+That's generally how we get around dependency injection frameworks and large mocking frameworks: just by writing code that uses small interfaces. Then we have small fakes like the ResponseRecorder -- small fakes that allow us to inspect how they were used. There are frameworks that generate those kinds of fakes -- one of them is called Go Mock [...]. They're fine, but I find that on balance the hand-written fakes tend to be easier to reason about, and clearer to see what is going on. That's my personal experience. But I am not an "enterprise" Go programmer so maybe people need that, I don't know. That's my advice.
+
+-- Andrew Gerrand in Testing Techniques (Google I/O 2014)
+
+https://www.youtube.com/watch?v=ndmB0bj7eyw&t=46m14s
+
+
+
+
