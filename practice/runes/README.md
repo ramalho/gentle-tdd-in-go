@@ -29,3 +29,66 @@ A sample of characters including one hyphenated name
 0032;DIGIT TWO;Nd;0;EN;;2;2;2;N;;;;;
 ```
 
+## Simple test example
+
+```go
+func TestParseInt(t *testing.T) {
+	input := "2A"
+	want := int64(42)
+	got, _ := strconv.ParseInt(input, 16, 7)
+	if got != want {
+		t.Errorf("Parsing %q, got: %d, want: %d", input, got, want)
+	}
+}
+```
+
+## Test example with `Fatal` condition
+
+When `t.Fatal` is called, the entire test function is aborted; no further checks are executed in that function.
+Other test functions remaining will still run. 
+
+```go
+func TestParseInt(t *testing.T) {
+	input := "2A"
+	want := int64(42)
+	got, err := strconv.ParseInt(input, 16, 7)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got != want {
+		t.Errorf("Parsing %q, got: %d, want: %q", input, got, want)
+	}
+}
+```
+
+## Table test example
+
+```go
+func TestSplitN(t *testing.T) {
+	var testCases = []struct {
+		text  string
+		sep   string
+		parts int
+		want  []string
+	}{
+		{"A-B-C-D", "-", -1, []string{"A", "B", "C", "D"}},
+		{"A-B-C-D", "|", -1, []string{"A-B-C-D"}},
+		{"", "-", -1, []string{""}},
+		{"A-B-C-D", "-", 0, []string{}},
+		{"", "-", 0, []string{}},
+		{"A-B-C-D", "-", 2, []string{"A", "B-C-D"}},
+		{"A-B-C-D", "-", 3, []string{"A", "B", "C-D"}},
+		{"A-B-C-D", "-", 8, []string{"A", "B", "C", "D"}},
+	}
+	for _, tc := range testCases {
+		testName := fmt.Sprintf("%q,%q,%d", tc.text, tc.sep, tc.parts)
+		t.Run(testName, func(t *testing.T) {
+			got := strings.SplitN(tc.text, tc.sep, tc.parts)
+			if !equalSlices(tc.want, got) {
+				t.Errorf("got: %#v, want: %#v", got, tc.want)
+			}
+		})
+	}
+}
+
+```
