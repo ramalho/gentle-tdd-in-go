@@ -1,10 +1,10 @@
 package main
 
 import (
-	"testing"
-	"strconv"
 	"fmt"
+	"strconv"
 	"strings"
+	"testing"
 )
 
 func TestParseInt(t *testing.T) {
@@ -28,7 +28,7 @@ func TestParseInt_withErrorHandling(t *testing.T) {
 	}
 }
 
-func equalSlices(s1, s2 []string) bool {
+func EqualSlices(s1, s2 []string) bool {
 	if len(s1) != len(s2) {
 		return false
 	}
@@ -42,9 +42,9 @@ func equalSlices(s1, s2 []string) bool {
 
 func TestEqualSlices(t *testing.T) {
 	var testCases = []struct {
-		s1  []string
-		s2  []string
-		want  bool
+		s1   []string
+		s2   []string
+		want bool
 	}{
 		{[]string{"A"}, []string{"A"}, true},
 		{[]string{"A", "B", "C"}, []string{"A", "B", "C"}, true},
@@ -58,7 +58,7 @@ func TestEqualSlices(t *testing.T) {
 	for _, tc := range testCases {
 		testName := fmt.Sprint(tc.s1, tc.s2)
 		t.Run(testName, func(t *testing.T) {
-			got := equalSlices(tc.s1, tc.s2)
+			got := EqualSlices(tc.s1, tc.s2)
 			if got != tc.want {
 				t.Errorf("got: %v, want: %v", got, tc.want)
 			}
@@ -86,7 +86,7 @@ func TestSplitN(t *testing.T) {
 		testName := fmt.Sprintf("%q,%q,%d", tc.text, tc.sep, tc.parts)
 		t.Run(testName, func(t *testing.T) {
 			got := strings.SplitN(tc.text, tc.sep, tc.parts)
-			if !equalSlices(tc.want, got) {
+			if !EqualSlices(tc.want, got) {
 				t.Errorf("got: %#v, want: %#v", got, tc.want)
 			}
 		})
