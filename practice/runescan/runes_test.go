@@ -11,8 +11,8 @@ func Example() {
 func TestParseLine(t *testing.T) {
 	line := "005A;LATIN CAPITAL LETTER Z;Lu;0;L;;;;;N;;;;007A;"
 	got := ParseLine(line)
-	want := "LATIN CAPITAL LETTER Z"
+	want := CharName{'Z', "LATIN CAPITAL LETTER Z"}
 	if got != want {
-		t.Errorf("Got: %q, want: %q", got, want)
+		t.Errorf("Got: %v, want: %v", got, want)
 	}
 }
