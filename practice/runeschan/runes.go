@@ -47,7 +47,7 @@ func match(queryTerms strset.Set, name string) bool {
 	return queryTerms.SubsetOf(strset.MakeFromText(name))
 }
 
-// Filter yields CharName records when query matches line in UnicodeData.txt
+// Filter yields CharName record when query matches line in UnicodeData.txt
 func Filter(data io.Reader, query string, results chan<- CharName) {
 	queryTerms := strset.MakeFromText(strings.ToUpper(query))
 	scanner := bufio.NewScanner(data)
