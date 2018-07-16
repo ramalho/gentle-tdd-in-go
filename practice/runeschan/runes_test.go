@@ -76,6 +76,8 @@ func TestFilter(t *testing.T) {
 		got := <-results
 		assert.Equal(t, want, got)
 	}
+	res, read := <-results
+	assert.False(t, read, fmt.Sprintf("unexpected result: %#v", res))
 }
 
 func Example_chess_black() {
